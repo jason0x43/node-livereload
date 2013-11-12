@@ -3,6 +3,7 @@ path = require 'path'
 ws   = require 'websocket.io'
 http  = require 'http'
 url = require 'url'
+chokidar = require 'chokidar'
 
 version = '1.6'
 defaultPort = 35729
@@ -86,9 +87,13 @@ class Server
   watch: (dirname) ->
     @walkTree dirname, (err, filename) =>
       throw err if err
-      fs.watchFile filename, {interval: @config.interval}, (curr, prev) =>
-        if curr.mtime > prev.mtime
-          @refresh filename
+      watcher = chokidar.watch filename, usePolling: false
+      watcher.on 'add', (filename) =>
+        @refresh filename
+      watcher.on 'change', (filename) =>
+        @refresh filename
+      watcher.on 'unlink', (filename) =>
+        @refresh filename
 
   refresh: (path) ->
     @debug "Refresh: #{path}"
