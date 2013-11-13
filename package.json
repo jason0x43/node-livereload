@@ -18,7 +18,7 @@
 , "dependencies": {
     "opts": ">= 1.2.0",
     "websocket.io": ">= 0.1.0",
-    "chokidar": ">= 0.7.0"
+    "observer": "git://github.com/jason0x43/node-observer.git"
   }
 , "devDependencies": {
     "request": ">= 2.9.203",
