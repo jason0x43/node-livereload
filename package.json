@@ -19,7 +19,7 @@
 	"dependencies": {
 		"opts": ">= 1.2.0",
 		"ws": ">= 0.4.30",
-		"observer": "git://github.com/jason0x43/node-observer.git"
+		"observer": "git://github.com/jason0x43/node-observer.git#19809354"
 	},
 	"devDependencies": {
 		"request": ">= 2.9.203",
